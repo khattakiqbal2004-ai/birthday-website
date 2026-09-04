@@ -13,7 +13,7 @@ loginForm.addEventListener("submit", async (event) => {
     button.textContent = "Checking... 🔐";
 
     try {
-       const response = await fetch("https://birthday-backend-2.onrender.com/login", {
+       const response = await fetch("https://birthday-backend-3.onrender.com/login", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
