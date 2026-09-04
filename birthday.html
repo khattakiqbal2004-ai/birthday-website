@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday ❤️</title>
+
+     <style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
+    color: white;
+    text-align: center;
+    background:
+        radial-gradient(circle at top, #35104f 0%, #160d29 35%, #05050b 75%);
+    overflow-x: hidden;
+}
+
+/* Stars */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background-image:
+        radial-gradient(white 1px, transparent 1px),
+        radial-gradient(white 1px, transparent 1px);
+    background-size: 70px 70px, 110px 110px;
+    background-position: 0 0, 35px 50px;
+    opacity: 0.25;
+}
+
+/* Main heading */
+h1 {
+    padding: 70px 20px 35px;
+    font-size: 55px;
+    letter-spacing: 2px;
+    background: linear-gradient(90deg, #ff7eb3, #ffd166, #c77dff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+    from {
+        filter: drop-shadow(0 0 5px #ff7eb3);
+    }
+    to {
+        filter: drop-shadow(0 0 20px #c77dff);
+    }
+}
+
+/* Cards */
+.wish,
+.memories,
+.surprise-text {
+    width: 90%;
+    max-width: 700px;
+    margin: 30px auto;
+    padding: 35px 25px;
+    border-radius: 28px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    backdrop-filter: blur(12px);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+}
+
+.wish h2,
+.memories h2,
+.surprise-text h2 {
+    margin-bottom: 18px;
+    font-size: 30px;
+}
+
+.wish p,
+.memories p,
+.surprise-text p {
+    line-height: 1.8;
+    color: #dddddd;
+    font-size: 18px;
+}
+
+/* Images */
+.photo-box {
+    width: 100%;
+    max-width: 520px;
+    margin: 25px auto;
+    overflow: hidden;
+    border-radius: 22px;
+}
+
+.photo-box img {
+    width: 100%;
+    display: block;
+    transition: transform 0.5s ease;
+}
+
+.photo-box:hover img {
+    transform: scale(1.05);
+}
+
+/* Surprise */
+.surprise {
+    margin: 50px auto;
+    padding: 20px;
+}
+
+.surprise button {
+    padding: 17px 32px;
+    border: none;
+    border-radius: 50px;
+    color: white;
+    background: linear-gradient(135deg, #ff4081, #9c27b0);
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 0 25px rgba(255, 64, 129, 0.6);
+    animation: pulse 1.6s infinite;
+    transition: transform 0.3s ease;
+}
+
+.surprise button:hover {
+    transform: scale(1.08);
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.06);
+    }
+}
+
+/* Hidden surprise */
+#birthdaySurprise {
+    display: none;
+}
+
+#birthdaySurprise.show {
+    display: block;
+    width: 90%;
+    max-width: 600px;
+    margin: 30px auto;
+    padding: 35px 25px;
+    border-radius: 25px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(15px);
+    animation: reveal 0.8s ease;
+}
+
+#birthdaySurprise h2 {
+    margin-bottom: 15px;
+    font-size: 30px;
+}
+
+#birthdaySurprise p {
+    line-height: 1.8;
+    color: #eeeeee;
+    font-size: 18px;
+}
+#birthdaySurprise::before {
+    content: "🎉";
+    display: block;
+    font-size: 45px;
+    margin-bottom: 10px;
+    animation: surprisePop 1s ease;
+}
+
+#birthdaySurprise h2 {
+    animation: surprisePop 0.8s ease;
+}
+
+#birthdaySurprise p {
+    animation: surpriseFade 1.2s ease;
+}
+
+@keyframes surprisePop {
+    0% {
+        transform: scale(0.5);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes surpriseFade {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes reveal {
+    from {
+        opacity: 0;
+        transform: translateY(30px) scale(0.9);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* Gallery */
+.gallery {
+    width: 90%;
+    max-width: 1200px;
+    margin: 50px auto 80px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+.photo-card {
+    padding: 12px;
+    border-radius: 22px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    transition: transform 0.4s ease;
+}
+
+.photo-card:hover {
+    transform: translateY(-10px);
+}
+
+.photo-card img {
+    width: 100%;
+    height: 330px;
+    object-fit: cover;
+    border-radius: 16px;
+}
+
+.photo-card p {
+    padding: 15px 5px 8px;
+    color: #eeeeee;
+}
+
+/* Small title */
+.small-title {
+    font-size: 13px;
+    letter-spacing: 3px;
+    color: #ff9ac2;
+}
+
+/* Mobile */
+@media (max-width: 700px) {
+    h1 {
+        font-size: 38px;
+        padding-top: 50px;
+    }
+
+    .gallery {
+        grid-template-columns: 1fr;
+    }
+
+    .photo-card img {
+        height: 300px;
+    }
+
+    .wish h2,
+    .memories h2,
+    .surprise-text h2 {
+        font-size: 25px;
+    }
+}
+/* Special Message */
+.special-message {
+    width: 90%;
+    max-width: 750px;
+    margin: 60px auto 80px;
+    padding: 45px 30px;
+    text-align: center;
+    border-radius: 30px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    backdrop-filter: blur(14px);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+}
+
+.special-message span {
+    font-size: 13px;
+    letter-spacing: 4px;
+    color: #ff9ac2;
+}
+
+.special-message h2 {
+    margin: 18px 0;
+    font-size: 32px;
+}
+
+.special-message p {
+    line-height: 1.9;
+    font-size: 18px;
+    color: #eeeeee;
+}
+
+.heart {
+    margin-top: 25px;
+    font-size: 45px;
+    animation: heartBeat 1.5s infinite;
+}
+
+@keyframes heartBeat {
+    0%, 100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.2);
+    }
+}
+/* Birthday Wishes Cards */
+
+.wish-cards {
+    width: 90%;
+    max-width: 1000px;
+    margin: 70px auto;
+}
+
+.wish-cards > h2 {
+    font-size: 32px;
+    margin-bottom: 30px;
+}
+
+.wish-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+.wish-card {
+    padding: 30px 20px;
+    border-radius: 25px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(12px);
+    transition: transform 0.3s ease;
+}
+
+.wish-card:hover {
+    transform: translateY(-10px);
+}
+
+.wish-card > div {
+    font-size: 40px;
+    margin-bottom: 15px;
+}
+
+.wish-card h3 {
+    font-size: 22px;
+    margin-bottom: 12px;
+}
+
+.wish-card p {
+    color: #dddddd;
+    line-height: 1.7;
+}
+
+/* Mobile */
+@media (max-width: 700px) {
+    .wish-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Floating Hearts */
+
+.floating-hearts {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 0;
+}
+
+.floating-hearts span {
+    position: absolute;
+    bottom: -50px;
+    font-size: 25px;
+    animation: floatHeart 8s linear infinite;
+    opacity: 0;
+}
+
+.floating-hearts span:nth-child(1) {
+    left: 10%;
+    animation-delay: 0s;
+}
+
+.floating-hearts span:nth-child(2) {
+    left: 30%;
+    animation-delay: 2s;
+}
+
+.floating-hearts span:nth-child(3) {
+    left: 50%;
+    animation-delay: 4s;
+}
+
+.floating-hearts span:nth-child(4) {
+    left: 70%;
+    animation-delay: 1s;
+}
+
+.floating-hearts span:nth-child(5) {
+    left: 85%;
+    animation-delay: 5s;
+}
+
+.floating-hearts span:nth-child(6) {
+    left: 40%;
+    animation-delay: 6s;
+}
+
+@keyframes floatHeart {
+    0% {
+        transform: translateY(0) scale(0.7);
+        opacity: 0;
+    }
+
+    15% {
+        opacity: 0.8;
+    }
+
+    85% {
+        opacity: 0.8;
+    }
+
+    100% {
+        transform: translateY(-110vh) scale(1.2);
+        opacity: 0;
+    }
+}
+@keyframes fall {
+    from {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+    }
+
+    to {
+        transform: translateY(110vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+</style>
+</head>
+
+<body>
+
+    <div class="floating-hearts">
+    <span>❤️</span>
+    <span>💖</span>
+    <span>💕</span>
+    <span>❤️</span>
+    <span>💗</span>
+    <span>💖</span>
+</div>
+
+    <h1>Happy Birthday 🎂❤️</h1>
+
+    <div class="wish">
+    <h2>For Someone Special ❤️</h2>
+    <p>
+        May your birthday be filled with happiness,
+        beautiful memories, and lots of smiles. 🎂✨
+    </p>
+</div>
+<div class="memories">
+    <h2>Beautiful Memories 📸❤️</h2>
+
+    <div class="photo-box">
+        <img src="memory 1.jpeg" alt="Beautiful memory">
+    </div>
+
+    <p>
+        Every beautiful moment becomes a memory worth keeping. ✨
+    </p>
+</div>
+<div class="surprise">
+    <button onclick="showSurprise()">🎁 Open Your Surprise</button>
+
+    <div id="birthdaySurprise">
+        <h2>✨ A Little Surprise ✨</h2>
+        <p>
+            You are truly special, and I hope your birthday
+            brings you countless beautiful moments. ❤️🎂
+        </p>
+    </div>
+</div>
+<section class="memories">
+    <h2>Our Beautiful Memories 📸❤️</h2>
+
+    <div class="memory-box">
+        <img src="memory 2.jpeg" alt="Beautiful Memory">
+        <p>One beautiful memory ❤️</p>
+    </div>
+</section>
+<div class="surprise-text">
+    <span class="small-title">A LITTLE PIECE OF HAPPINESS ✨</span>
+    <h2>Moments Worth Keeping 📸</h2>
+    <p>Some days become special because of the moments we remember. ❤️</p>
+</div>
+<div class="gallery">
+
+    <div class="photo-card">
+        <img src="memory 3.jpeg" alt="Memory 3">
+        <p>A moment to remember ❤️</p>
+    </div>
+
+    <div class="photo-card">
+        <img src="memory 4.jpeg" alt="Memory 4">
+        <p>Another beautiful memory ✨</p>
+    </div>
+
+    <div class="photo-card">
+        <img src="memory 5.jpeg" alt="Memory 5">
+        <p>A little moment, a lasting memory 💫</p>
+    </div>
+
+</div>
+<div class="special-message">
+
+    <span>✨ JUST FOR YOU ✨</span>
+
+    <h2>A Special Message ❤️</h2>
+
+    <p>
+        Some people make ordinary moments feel special.
+        Your presence, your smile, and the memories we create
+        make every moment worth remembering. 🌸✨
+    </p>
+
+    <div class="heart">❤️</div>
+
+</div>
+<div class="wish-cards">
+
+    <h2>Birthday Wishes 🎂✨</h2>
+
+    <div class="wish-grid">
+
+        <div class="wish-card">
+            <div>🌸</div>
+            <h3>Happiness</h3>
+            <p>May your days always be filled with beautiful smiles.</p>
+        </div>
+
+        <div class="wish-card">
+            <div>✨</div>
+            <h3>Beautiful Moments</h3>
+            <p>May every new day bring you something worth remembering.</p>
+        </div>
+
+        <div class="wish-card">
+            <div>💫</div>
+            <h3>Wonderful Future</h3>
+            <p>May your future be full of amazing memories and dreams.</p>
+        </div>
+
+    </div>
+
+</div>
+<script>
+function showSurprise() {
+    document.getElementById("birthdaySurprise").classList.add("show");
+
+    document.querySelector(".surprise button").innerText =
+        "❤️ Surprise Opened ❤️";
+
+    createConfetti();
+}
+
+function createConfetti() {
+    for (let i = 0; i < 25; i++) {
+        const confetti = document.createElement("span");
+
+        confetti.innerText = ["❤️", "💖", "✨", "🎉", "💕"][
+            Math.floor(Math.random() * 5)
+        ];
+
+        confetti.style.position = "fixed";
+        confetti.style.left = Math.random() * 100 + "vw";
+        confetti.style.top = "-30px";
+        confetti.style.fontSize = "25px";
+        confetti.style.zIndex = "9999";
+        confetti.style.pointerEvents = "none";
+        confetti.style.animation = "fall 3s linear forwards";
+
+        document.body.appendChild(confetti);
+
+        setTimeout(() => {
+            confetti.remove();
+        }, 3000);
+    }
+}
+</script>
+</body>
+</html>
